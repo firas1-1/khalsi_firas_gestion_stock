@@ -1,0 +1,271 @@
+<div  style=" background-color: #f7fcfe;">
+
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+  <div class="w3-container" id="contact" style="margin-top:75px">
+      <h1 class="w3-xxxlarge " style="color:#004068; font-family: Times; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 100; line-height: 46.2px;" ><b>Stock initial</b></h1>
+      <hr style="width:50px;border:5px solid rgb(183, 182, 186)" class="w3-round">
+<div class="col">
+  <div class="row m-3">
+      
+      <div class="col-md-4 p-0 text-right">
+      </div>
+  </div>
+  <div class="container shadow min-vh-100 py-4">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+                    <form>
+                      <div class="small fw-light">search </div>
+            <div class="input-group">
+                      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" class="form-control border-end-0 border rounded-pill" type="search" [(ngModel)]="selectedAttribute" value="search" id="example-search-input">
+                <span class="input-group-append">
+                      <select class="form-control"   class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" >
+                        <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button" >
+                          <i class="fa fa-search"></i>
+                      </button>
+  
+        
+        
+                        <option value="ART"  >ART </option>
+                        <option value="codeOracle">Code Oracle</option>
+                        <option value="Designation">Designation</option>
+                        <option value="quantity">quantity</option>
+                        <option value="alert_quantity">Limit_Stock</option>
+                      </select>
+                </span>
+            </div>
+          </form>
+        </div>
+    </div>
+      <div class="table-responsive" #table>
+        <button mat-button (click)="exportExcel()" class="btn btn-outline-primary">Export Excel</button>
+        <button mat-button class="btn btn-outline-primary" (click)="importExcel()">Import Excel</button>
+        <button mat-button class="btn btn-outline-primary">Export Pdf</button>
+          <table  mat-table MatPaginator [dataSource]="dataSource" matSort class="mat-elevation-z2" class="table table-bordered" id="dataTable"   class="table table-striped" style="width:100%">
+        <!-- ART Column -->
+        <ng-container matColumnDef="ART">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ART </th>
+          <td mat-cell *matCellDef="let element"> {{element.ART}}  </td>
+        </ng-container>
+
+        <!-- THORN Column -->
+        
+
+        <!-- codeOracle Column -->
+        <ng-container matColumnDef="codeOracle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> codeOracle </th>
+          <td mat-cell *matCellDef="let element"> {{element.codeOracle}} </td>
+        </ng-container>
+
+        <!-- Designation Column -->
+        <ng-container matColumnDef="Designation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation </th>
+          <td mat-cell *matCellDef="let element"> {{element.Designation}} </td>
+        </ng-container>
+
+        <!-- quantity Column -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> quantity </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+
+        <!-- Limit_Stock Column -->
+        <ng-container matColumnDef="Limit_Stock">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Limit_Stock </th>
+          <td mat-cell *matCellDef="let element"> {{element.alert_quantity}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+          <td mat-cell *matCellDef="let element">
+         <button mat-button class="btn btn-success" color="primary" data-toggle="modal" data-target="#example" (click)="addId(element._id,element.quantity)" >Mouvement Stock</button>
+         <button mat-button class="btn btn-pink" color="primary" data-toggle="modal" data-target="#update" (click)="addId(element._id,element.quantity)" > <mat-icon>update</mat-icon>
+          
+         </button>
+         <button mat-button class="btn btn-pink" color="primary" data-toggle="modal" data-target="#delete" (click)="addId(element._id,element.quantity)" (click)="deleteProduct()" > <mat-icon>delete</mat-icon>
+         </button>
+
+        </ng-container>
+       
+        
+        
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> id </th>
+          <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+          
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="sticky-header"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+      </table>
+      
+      
+    </div>
+      <mat-paginator [pageSizeOptions]="[30,60,90,120]" showFirstLastButtons [pageSize]="100" [length]="dataSource.data.length"></mat-paginator>
+    
+  </div>
+</div>
+</div>
+
+
+
+
+<div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content bg-light">
+        <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title" id="exampleModalLabel">Command</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- form update start here -->
+        <form #f="ngForm" (ngSubmit)="add(f)">
+
+          <!-- designation validation start here -->
+             
+          
+          <div class="modal-body" >
+            <div class="form-group">
+              <label for="exampleFormControlInput1">quantity</label>
+              <input type="number" class="form-control" placeholder="quantity"  required name="quantity" #quantity="ngModel" ngModel>
+            </div>
+            <div class="alert alert-danger" *ngIf="quantity.errors?.['required'] && quantity.touched">
+              Quantity is required
+            </div>
+            <div class="form-group">
+              <select class="form-control"name="test" [(ngModel)]="selected"  #test="ngModel">
+                <option value="1"  >Entree</option>
+                <option value="0">Sortie</option>
+              </select>
+            </div>
+          
+          
+        
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;Annuler</button>
+          <button  class="btn btn-primary" [disabled]="f.invalid"   (click)="getnotif()"> <i class="fas fa-save"></i>&nbsp;Enregistrer</button>
+        </div>
+        </div>
+      </form>
+      
+      <div *ngIf="showAlertSucess" class="alert alert-success" role="alert">
+        This is a success alert—check it out!
+      </div>
+      
+      <div *ngIf="showAlertWarning" class="alert alert-warning" role="alert">
+        Warning: Quantity is equal to alert quantity
+      </div>
+
+
+
+        <!-- form update end here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+</div>
+
+  </div>
+  <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+  <div class="modal-body" >
+    <!-- form update start here -->
+    <form #fa="ngForm" (ngSubmit)="updateProduct(fa)">
+      <!-- ART validation start here -->
+          <div class="form-group">
+      
+            <label for="exampleFormControlInput1">ART</label>
+            <input type="text" class="form-control" placeholder="ART"  required name="ART" #ART="ngModel" ngModel minlength="2" maxlength="20">
+          </div>
+          <div class="alert alert-danger" *ngIf="ART.errors?.['required'] && ART.touched">
+            ART is required
+          </div>
+          <div class="alert alert-danger" *ngIf="ART.errors?.['minlength'] && ART.touched">
+            ART must be minimum 2 caractere
+          </div>
+      <!-- CodeOracle validation end here -->
+      
+      <!-- CodeOracle validation start here -->
+          <div class="form-group">
+              <label for="exampleFormControlInput1">CodeOracle</label>
+              <input type="text" class="form-control" placeholder="CodeOracle"  required name="CodeOracle" #CodeOracle="ngModel" minlength="2" maxlength="20" ngModel>
+            </div>
+            <div class="alert alert-danger" *ngIf="CodeOracle.errors?.['required'] && CodeOracle.touched">
+              CodeOracle is required
+            </div>
+            <div class="alert alert-danger" *ngIf="CodeOracle.errors?.['minlength'] && CodeOracle.touched">
+              CodeOracle must be minimum 2 caractere
+            </div>
+      <!-- CodeOracle validation end here -->
+      
+      <!-- Designation validation start here -->
+      
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Designation</label>
+              <input type="Designation" class="form-control" placeholder="Designation"  Designation required name="Designation" #Designation="ngModel" ngModel>
+            </div>
+            <div class="alert alert-danger" *ngIf="Designation.errors?.['required'] && Designation.touched">
+              Designation is required
+            </div>
+      
+            <div class="alert alert-danger" *ngIf="Designation.errors?.['Designation'] && Designation.touched">
+              the input must be Designation  string
+            </div>
+      <!-- Designation validation end here -->
+      
+      <!-- age validation start here -->
+            <div class="form-group">
+              <label for="exampleFormControlInput1">quantity</label>
+              <input type="number" class="form-control" placeholder="quantity"  required name="quantity" #quantity="ngModel" ngModel>
+            </div>
+            <div class="alert alert-danger" *ngIf="quantity.errors?.['required'] && quantity.touched">
+              quantity is required
+            </div>
+
+       <!-- quantity validation end here -->     
+
+       <!-- Phone validation start here -->
+
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Stock minimum</label>
+              <input type="number" class="form-control" placeholder="alert_quantity"  required name="alert_quantity" #alerte_quantity="ngModel" ngModel>
+            </div>
+          
+      <!-- Phone validation end here -->
+     
+          <div class="alert alert-success" *ngIf="messageSuccess">
+              {{messageSuccess}}
+          </div>      
+
+         <button class="btn btn-primary" [disabled]="fa.invalid">Update student</button>
+        </form>
+
+
+
+    <!-- form update end here -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    
+  </div>
+</div>
+</div>
+
+ 
+  
+
+
+

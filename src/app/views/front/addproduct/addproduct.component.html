@@ -1,0 +1,58 @@
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+    <div class="w3-container" id="contact" style="margin-top:75px">
+        <h1 class="w3-xxxlarge #88BFB5 "><b>Ajouter Un produit</b></h1>
+        <hr style="width:50px;border:5px solid #88BFB5" class="w3-round">
+            <div [hidden]="submitted">
+              <form (ngSubmit)="add(heroForm)" #heroForm="ngForm">
+                <div class="form-group">
+                  <label for="name">ART</label>
+                  <input type="text" class="form-control" id="ART"
+                         required
+                         [(ngModel)]="model.ART" name="ART"
+                         #ART="ngModel">
+                  <div [hidden]="ART.valid || ART.pristine"
+                       class="alert alert-danger">
+                    ART is required
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="THORN">THORN</label>
+                  <input type="text" class="form-control" id="THORN"
+                         [(ngModel)]="model.THORN" name="THORN">
+                </div>
+                <div class="form-group">
+                    <label for="codeOracle">codeOracle</label>
+                    <input type="text" class="form-control" id="codeOracle"
+                           [(ngModel)]="model.codeOracle" name="codeOracle">
+                  </div>
+                  <div class="form-group">
+                    <label for="Designation">Designation</label>
+                    <input type="text" class="form-control" id="Designation"
+                           [(ngModel)]="model.Designation" name="Designation">
+                  </div>
+                  <div class="form-group">
+                    <label for="quantity">quantity</label>
+                    <input type="text" class="form-control" id="quantity"
+                           [(ngModel)]="model.quantity" name="quantity">
+                  </div>
+                  <div class="form-group">
+                    <label for="Alert_Stock">Stock minimum</label>
+                    <input type="text" class="form-control" id="Alert_Stock"
+                           [(ngModel)]="model.Alert_Stock" name="Alert_Stock">
+                  </div>
+                  
+          
+                
+          
+                <button type="submit" class="btn btn-success" data-target="#test" [disabled]="!heroForm.form.valid">Submit</button>
+                <button type="button" class="btn btn-default"  (click)="newHero(); heroForm.reset()">New Product</button>
+              </form>
+              
+              
+            </div>
+            
+          
+            
+          </div>
+    </div>

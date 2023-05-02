@@ -1,0 +1,28 @@
+.loader {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+  }
+  
+  .loader i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 30px;
+    animation: flight 3s ease-in-out infinite;
+  }
+  
+  @keyframes flight {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(200px) rotate(45deg);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  

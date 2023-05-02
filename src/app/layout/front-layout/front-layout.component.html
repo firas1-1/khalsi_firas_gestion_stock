@@ -1,0 +1,202 @@
+<!-- Sidebar/menu -->
+
+<main class="main" *ngIf="au.userLoggedIn()" >
+    <aside class="sidebar">
+      <nav class="nav">
+        <ul>
+          <li class="active"><a href="#">Welcome</a></li>
+          <li>    <a routerLink="/" >Home</a>
+          </li>
+          
+            <li>     <a routerLink="/stockinitial"  *ngIf="au.userLoggedIn()">Initial Stock</a>
+
+
+            </li>
+            <li>     <a  routerLink="/stockdetails"> Stock Movement </a>
+
+            </li>
+            <li>     <a routerLink="/addproduct" >Add product </a>
+            </li>
+            
+        </ul>
+      </nav>
+    </aside>
+  
+    
+  </main>
+<main class="main" *ngIf="!au.userLoggedIn()">
+    <aside class="sidebar">
+      <nav class="nav">
+        <ul>
+          <li class="active"><a href="#">Welcome </a></li>
+          <li class="b">        <a routerLink="/loginuser"   >Login</a>
+          </li>
+
+            <li>         <a routerLink="/register" >Register</a>
+            </li>
+            
+        </ul>
+      </nav>
+    </aside>
+  
+    
+  </main>
+    <!-- Topbar Search -->
+    
+  
+    <!-- Topbar Navbar -->
+    
+    <nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow"  >
+  
+      <!-- Sidebar Toggle (Topbar) -->
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+      </button>
+  
+      <!-- Logo -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown no-arrow mx-1" style="order: -1;">
+              <a class="navbar-brand" href="#">
+                  <img src="assets/admin/img/airport.svg" alt="Logo" style="height:70px;width:170px;">
+                  <h4 style="color:#00387b;"></h4>
+              </a>
+          </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown no-arrow mx-1" style="order: -1;">
+            <div class="loader">
+                
+                <i class="fas fa-rocket"></i>
+              <a>  <i class="fas fa-award"></i></a> 
+                
+            </div>
+              
+        </li>
+    </ul>
+  
+      <ul class="navbar-nav ml-auto">
+  
+  
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+        
+  
+        <!-- Nav Item - Alerts -->
+        
+        <li class="nav-item dropdown no-arrow mx-1" *ngIf="au.userLoggedIn()" >
+          
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="getnotification()">
+              <i class="fas fa-bell fa-fw"></i>
+              <!-- Counter - Alerts -->
+              <span class="badge badge-danger badge-counter">{{length}} </span>
+          </a>
+          <!-- Dropdown - Alerts -->
+          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <h6 class="dropdown-header">
+                  Alerts Center
+              </h6>
+              <div *ngFor="let item of dataArrayX; index as i">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                      <div class="mr-3">
+                          <div class="icon-circle bg-warning">
+                                              <i class="fas fa-exclamation-triangle text-white"></i>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="small text-gray-500">{{ item.Date | date:'yyyy-MM-dd' }}</div>
+                          <span class="font-weight-bold">"The article defined by {{item.codeOracle}} has a quantity of {{item.quantity}}, which is below the minimum stock level"  </span>
+                      </div>
+                  </a>
+              </div>
+              <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+          </div>
+      </li>
+      
+  
+        <!-- Nav Item - Messages -->
+        <li class="nav-item dropdown no-arrow mx-1" *ngIf="au.userLoggedIn()">
+            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+                <!-- Counter - Messages -->
+                <span class="badge badge-danger badge-counter">7</span>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown" *ngIf="au.userLoggedIn()">
+                <h6 class="dropdown-header">
+                    Message Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                        <div class="status-indicator bg-success"></div>
+                    </div>
+                    
+                </a>
+                
+               
+                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+            </div>
+        </li>
+        
+        <div class="topbar-divider d-none d-sm-block"></div>
+  
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow" *ngIf="au.userLoggedIn()">
+          
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="au.userLoggedIn()">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{username}}</span>
+                <img class="img-profile rounded-circle" src="assets/admin/img/undraw_profile.svg">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    
+                    <a routerLink="/Profile" class="w3-bar-item w3-button w3-hover-tav-blue" (click)="profile()" *ngIf="au.userLoggedIn()">Profile</a>
+                  </a>
+                
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" (click)="logout()">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
+        </li>
+  
+    </ul>
+    </nav>
+  
+  
+  <!-- Top menu on small screens -->
+  <header class="w3-bar w3-top w3-hide-large w3-tav w3-xlarge">
+    <div class="w3-bar-item w3-padding-24 w3-mobile">
+      <a href="javascript:void(0)" class="w3-button w3-tav w3-margin-right" onclick="w3_open()">&#9776;</a>
+      <span></span>
+    </div>
+  </header>
+  
+  <!-- this is spa page for content -->
+  <router-outlet></router-outlet>
+  <!-- this is spa page for content -->
+  
+<!-- This is a reverse engineering of the "Hyperspace"
+     design from HTML5 Up! https://html5up.net/hyperspace -->
+
+     

@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background-color: #032a49;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.greeting {
+  padding: 20px;
+}
+
+.tasks {
+  margin: 20px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.awards {
+  display: inline-block;
+  background-color: #032a49;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.awards:hover {
+  background-color: #fff;
+  color: #032a49;
+}

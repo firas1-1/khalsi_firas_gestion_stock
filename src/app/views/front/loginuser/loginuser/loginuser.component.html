@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	
+</head>
+<body>
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" placeholder="User name" required="">
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="password" placeholder="Password" required="">
+					<button>Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form  #f="ngForm" (ngSubmit)="login(f)">
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" type="email" name="email" placeholder="Username" required #email="ngModel" ngModel>
+					<input type="password" type="password" name="password" required placeholder="Password" #password="ngModel" ngModel>
+          <div class="alert alert-danger" *ngIf="messageError">
+            {{messageError}}
+          </div>
+					<button type="submit">Login</button>
+				</form>
+			</div>
+	</div>
+	<nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow"  >
+  
+		<!-- Sidebar Toggle (Topbar) -->
+		<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+			<i class="fa fa-bars"></i>
+		</button>
+	
+		<!-- Logo -->
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item dropdown no-arrow mx-1" style="order: -1;">
+				<a class="navbar-brand" href="#">
+					<img src="assets/admin/img/airport.svg" alt="Logo" style="height:70px;width:170px;">
+					<h4 style="color:#00387b;"></h4>
+				</a>
+			</li>
+		</ul>
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item dropdown no-arrow mx-1" style="order: -1;">
+			  <div class="loader">
+				  
+				  <i class="fas fa-rocket"></i>
+				<a>  <i class="fas fa-award"></i></a> 
+				  
+			  </div>
+				
+		  </li>
+	  </ul>
+	
+		<ul class="navbar-nav ml-auto">
+	
+	
+		  <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+		  <li class="nav-item dropdown no-arrow d-sm-none">
+			  <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  <i class="fas fa-search fa-fw"></i>
+			  </a>
+			  <!-- Dropdown - Messages -->
+			  <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+				  <form class="form-inline mr-auto w-100 navbar-search">
+					  <div class="input-group">
+						  <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+						  <div class="input-group-append">
+							  <button class="btn btn-primary" type="button">
+								  <i class="fas fa-search fa-sm"></i>
+							  </button>
+						  </div>
+					  </div>
+				  </form>
+			  </div>
+		  </li>
+		  
+	
+		  <!-- Nav Item - Alerts -->
+		  
+		  
+		
+	
+		  <!-- Nav Item - Messages -->
+		  
+	
+	  </ul>
+	  </nav>
+	
+</body>
+</html>

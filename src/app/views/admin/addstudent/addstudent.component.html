@@ -1,0 +1,75 @@
+
+ <div class="container">
+
+  <form #f="ngForm" (ngSubmit)="add(f)">
+<!-- firstName validation start here -->
+    <div class="form-group">
+
+      <label for="exampleFormControlInput1">Designation</label>
+      <input type="text" class="form-control" placeholder="Designation" required name="designation" #designation="ngModel" ngModel minlength="2" maxlength="20">
+    </div>
+    <div class="alert alert-danger" *ngIf="designation.errors?.['required'] && designation.touched">
+      Designation is required
+    </div>
+    <div class="alert alert-danger" *ngIf="designation.errors?.['minlength'] && designation.touched">
+      Designation must be minimum **** caractere
+    </div>
+<!-- lastName validation end here -->
+
+<!-- lastName validation start here -->
+    <div class="form-group">
+        <label for="exampleFormControlInput1">justification</label>
+        <input type="text" class="form-control" placeholder="justification" required name="justification" #justification="ngModel" minlength="2" maxlength="20" ngModel>
+      </div>
+      <div class="alert alert-danger" *ngIf="justification.errors?.['required'] && justification.touched">
+        justification is required
+      </div>
+      <div class="alert alert-danger" *ngIf="justification.errors?.['minlength'] && justification.touched">
+        justification must be minimum ***** caractere
+      </div>
+<!-- lastName validation end here -->
+
+<!-- quantity validation start here -->
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">quantity</label>
+        <input type="number" class="form-control" placeholder="quantity"  required name="quantity" #quantity="ngModel" ngModel>
+      </div>
+      <div class="alert alert-danger" *ngIf="quantity.errors?.['required'] && quantity.touched">
+        quantity is required
+      </div>
+
+      
+
+<!-- age validation start here -->
+      <div class="form-group">
+        <label for="exampleFormControlInput1">department</label>
+        <input type="text" class="form-control" placeholder="department" required name="department" #department="ngModel" ngModel>
+      </div>
+      <div class="alert alert-danger" *ngIf="department.errors?.['required'] && department.touched">
+        department is required
+      </div>
+ <!-- age validation end here -->     
+
+
+ <!-- MR validation start here -->
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">MR</label>
+        <input type="number" class="form-control" placeholder="MR" required name="MR" #MR="ngModel" ngModel>
+      </div>
+      <div class="alert alert-danger" *ngIf="MR.errors?.['required'] && MR.touched">
+        MR is required
+      </div>
+<!-- MR validation end here -->
+      <div class="alert alert-danger" *ngIf="messageErr">
+        {{messageErr}}
+      </div>
+
+   <button class="btn btn-primary" [disabled]="f.invalid">Add Command</button>
+  </form>
+
+
+ </div>
+
+  

@@ -1,0 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+
+ *, *:before, *:after {
+	 box-sizing: border-box;
+}
+/* Some basic CSS overrides */
+ body {
+	 line-height: 1.5;
+	 min-height: 100vh;
+	 font-family: "Outfit", sans-serif;
+	 color: #2d232e;
+	 background-color: #c8c0bd;
+	 position: relative;
+}
+ button, input, select, textarea {
+	 font: inherit;
+}
+ a {
+	 color: inherit;
+}
+/* End basic CSS override */
+ * {
+	 scrollbar-width: 0;
+}
+ *::-webkit-scrollbar {
+	 background-color: transparent;
+	 width: 12px;
+}
+ *::-webkit-scrollbar-thumb {
+	 border-radius: 99px;
+	 background-color: #ddd;
+	 border: 4px solid #fff;
+}
+ .modal {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 right: 0;
+	 bottom: 0;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 background-color: rgba(0, 0, 0, 0.25);
+}
+ .modal-container {
+	 max-height: 90vh;
+	 max-width: 500px;
+	 margin-left: auto;
+	 margin-right: auto;
+	 background-color: #fff;
+	 border-radius: 16px;
+	 overflow: hidden;
+	 display: flex;
+	 flex-direction: column;
+	 box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.25);
+}
+ @media (max-width: 600px) {
+	 .modal-container {
+		 width: 90%;
+	}
+}
+ .modal-container-header {
+	 padding: 16px 32px;
+	 border-bottom: 1px solid #ddd;
+	 display: flex;
+	 align-items: center;
+	 justify-content: space-between;
+}
+ .modal-container-title {
+	 display: flex;
+	 align-items: center;
+	 gap: 8px;
+	 line-height: 1;
+	 font-weight: 700;
+	 font-size: 1.125;
+}
+ .modal-container-title svg {
+	 width: 32px;
+	 height: 32px;
+	 color: #750550;
+}
+ .modal-container-body {
+	 padding: 24px 32px 51px;
+	 overflow-y: auto;
+}
+ .rtf h1, .rtf h2, .rtf h3, .rtf h4, .rtf h5, .rtf h6 {
+	 font-weight: 700;
+}
+ .rtf h1 {
+	 font-size: 1.5rem;
+	 line-height: 1.125;
+}
+ .rtf h2 {
+	 font-size: 1.25rem;
+	 line-height: 1.25;
+}
+ .rtf h3 {
+	 font-size: 1rem;
+	 line-height: 1.5;
+}
+ .rtf > * + * {
+	 margin-top: 1em;
+}
+ .rtf self > * + :is(h1, h2, h3) {
+	 margin-top: 2em;
+}
+ .rtf self > :is(h1, h2, h3) + * {
+	 margin-top: 0.75em;
+}
+ .rtf ul, .rtf ol {
+	 margin-left: 20px;
+	 list-style-position: inside;
+}
+ .rtf ol {
+	 list-style: numeric;
+}
+ .rtf ul {
+	 list-style: disc;
+}
+ .modal-container-footer {
+	 padding: 20px 32px;
+	 display: flex;
+	 align-items: center;
+	 justify-content: flex-end;
+	 border-top: 1px solid #ddd;
+	 gap: 12px;
+	 position: relative;
+}
+ .modal-container-footer:after {
+	 content: "";
+	 display: block;
+	 position: absolute;
+	 top: -51px;
+	 left: 24px;
+	 right: 24px;
+	 height: 50px;
+	 flex-shrink: 0;
+	 background-image: linear-gradient(to top, rgba(255, 255, 255, 0.75), transparent);
+	 pointer-events: none;
+}
+ .button {
+	 padding: 12px 20px;
+	 border-radius: 8px;
+	 background-color: transparent;
+	 border: 0;
+	 font-weight: 600;
+	 cursor: pointer;
+	 transition: 0.15s ease;
+}
+ .button.is-ghost:hover, .button.is-ghost:focus {
+	 background-color: #dfdad7;
+}
+ .button.is-primary {
+	 background-color: #750550;
+	 color: #fff;
+}
+ .button.is-primary:hover, .button.is-primary:focus {
+	 background-color: #4a0433;
+}
+ .icon-button {
+	 padding: 0;
+	 border: 0;
+	 background-color: transparent;
+	 width: 40px;
+	 height: 40px;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 line-height: 1;
+	 cursor: pointer;
+	 border-radius: 8px;
+	 transition: 0.15s ease;
+}
+ .icon-button svg {
+	 width: 24px;
+	 height: 24px;
+}
+ .icon-button:hover, .icon-button:focus {
+	 background-color: #dfdad7;
+}
+.buttons {
+    display: flex;
+    width: 70px;
+    margin-left:370px;
+    gap: 05px;
+    --b: 0.2px;   /* the border thickness */
+    --h: 1.2em; /* the height */
+  }
+  
+  .buttons button {
+    --_c: #032f4f;
+    flex: calc(1.25 + var(--_s,0));
+    min-width: 0;
+    font-size: 12px;
+    font-weight: bold;
+    height: var(--h);
+    cursor: pointer;
+    color: var(--_c);
+    border: var(--b) solid var(--_c);
+    background: 
+      conic-gradient(at calc(100% - 1.3*var(--b)) 0,var(--_c) 209deg, #0000 211deg) 
+      border-box;
+    clip-path: polygon(0 0,100% 0,calc(100% - 0.577*var(--h)) 100%,0 100%);
+    padding: 0 calc(0.288*var(--h)) 0 0;
+    margin: 0 calc(-0.288*var(--h)) 0 0;
+    box-sizing: border-box;
+    transition: flex .4s;
+  }
+  .buttons button + button {
+    --_c: #7d107d;
+    flex: calc(.75 + var(--_s,0));
+    background: 
+      conic-gradient(from -90deg at calc(1.3*var(--b)) 100%,var(--_c) 119deg, #0000 121deg) 
+      border-box;
+    clip-path: polygon(calc(0.577*var(--h)) 0,100% 0,100% 100%,0 100%);
+    margin: 0 0 0 calc(-0.288*var(--h));
+    padding: 0 0 0 calc(0.288*var(--h));
+  }
+  .buttons button:focus-visible {
+    outline-offset: calc(-2*var(--b));
+    outline: calc(var(--b)/2) solid #f5f1f1;
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
+  }
+  .buttons button:focus-visible + button {
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
+  }
+  .buttons button:has(+ button:focus-visible) {
+    background: none;
+    clip-path: none;
+    margin: 0;
+    padding: 0;
+  }
+  button:hover,
+  button:active:not(:focus-visible) {
+    --_s: .75;
+  }
+  button:active {
+    box-shadow: inset 0 0 0 100vmax var(--_c);
+    color: #fff;
+  }
+  .oo{
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+  width: 400px;
+  margin:0 auto;
+  padding: 0rem;
+}
+
+.oo blockquote.quote {
+    position: relative; 
+    text-align: center;
+    padding: 1rem 1.2rem;
+    width: 80%;  /* create space for the quotes */
+    color: #484748;
+    margin: 1rem auto 2rem;
+}
+.oo blockquote.EN {
+    background:
+    linear-gradient(to right, #039be5 4px, transparent 4px) 0 100%,
+    linear-gradient(to left, #039be5 4px, transparent 4px) 100% 0,
+    linear-gradient(to bottom, #039be5 4px, transparent 4px) 100% 0,
+    linear-gradient(to top, #039be5 4px, transparent 4px) 0 100%;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+
+.oo blockquote.DE {
+    background:
+    linear-gradient(to right, #039be5 4px, transparent 4px) 0% 0%,
+    linear-gradient(to bottom, #039be5 4px, transparent 4px) 0% 0%,
+    linear-gradient(to left, #039be5 4px, transparent 4px) 100% 100%,
+    linear-gradient(to top, #039be5 4px, transparent 4px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 2px 20px;
+}
+    
+
+/* -- create the quotation marks -- */
+.oo blockquote.quote:before,
+.oo blockquote.quote:after{
+    font-family: FontAwesome;
+    position: absolute;
+    color: #039be5;
+    font-size: 340px;
+}
+
+.oo blockquote.EN:before{
+    content: "\f10d";
+    top: -12px;
+    margin-right: -20px;
+    right: 100%;
+}
+.oo blockquote.EN:after{
+    content: "\f10e";
+    margin-left: -20px;
+    left: 100%;  
+    top: auto;
+    bottom: -20px;
+}
+.oo blockquote.DE:before{
+    content: "\f10e";
+    margin-right: -20px;
+    bottom: -20px;
+    right: 100%;
+}
+.oo blockquote.DE:after{
+    content: "\f10d";
+    margin-left: -20px;
+    left: 100%;  
+    top: -20px;
+    bottom: auto;
+}
+.sidekick {
+  position: relative;
+  padding-left: 1em;
+  border-left: 0.1em solid #039be5;
+  font-family: 'Roboto', serif;
+  font-size: 1.1em;
+  line-height: 1.2em;
+  font-weight: 100;
+}
+.sidekick:before, .sidekick:after {
+  font-family: Calibri;
+    color: #039be5;
+    font-size: 35px;
+}
+.sidekick:before {content: '\201e'}
+.sidekick:after {content: '\201c';}
+.sidekick cite {font-size: 50%; text-align:center; top:50%}
+.sidekick cite:before {content: ' \2015 '}
+  
+  
+  
+  
+ 

@@ -1,0 +1,164 @@
+
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* adjust the z-index value as needed */
+  }
+body{
+    padding-top: 80px;
+}  
+.topbar {
+  background-color: #f6f7f8; /* Replace with the desired color code */
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html {
+  font-family: Arial;
+  font-size: 16px;
+  background: #7860b4;
+}
+
+.sidebar {
+  position: fixed;
+  width: 35%;
+  height: 100vh;
+  background: #001154;
+  font-size: 0.65em;
+  margin-top: -10px;
+  
+}
+
+.nav {
+  position: relative;
+  margin: 0 15%;
+  text-align: right;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.nav ul {
+  list-style: none;
+}
+
+.nav ul li {
+  position: relative;
+  margin: 3.2em 0;
+}
+
+.nav ul li a {
+  line-height: 5em;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.4em;
+  color: #eff0f5;
+  display: block;
+  transition: all ease-out 300ms;
+  font-size: 10px; /* increase the font size here */
+  font-weight: 400px; line-height: 46.2px;
+
+}
+
+
+.nav ul li.active a {
+  color: rgb(17, 3, 3);
+}
+
+.nav ul li:not(.active)::after {
+  opacity: 0.2;
+}
+
+.nav ul li:not(.active):hover a {
+  color: rgba(#d7d2f2, 0.75);
+}
+
+.nav ul li::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0.2em;
+  background: rgb(245, 203, 245);
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to right, #503597, #faf3f8);
+}
+
+.twitter {
+  position: relative;
+  width: 75%;
+  float: right;
+  height: 100vh;
+}
+
+.twitter .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.twitter a {
+  position: relative;
+}
+
+.twitter a img {
+  width: 48px;
+  height: 48px;
+}
+
+.twitter p {
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  color: #FFF;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+
+
+.loader {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+.loader a i {
+  position: relative;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+  animation: flight 60s ease-in-out infinite;
+  color: #d8a400
+  ;
+}
+
+.loader i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 30px;
+  animation: flight 60s ease-in-out infinite;
+  color: #032a49;
+}
+
+
+@keyframes flight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(700px) rotate(45deg);
+  }
+  100% {
+    transform: translateX(0) ;
+  }
+}
+
+
+

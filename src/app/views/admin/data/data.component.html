@@ -1,0 +1,168 @@
+<div class="w3-main" style="margin-left:100px;margin-right:40px">
+    <div class="w3-container" id="contact" style="margin-top:50px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>Users</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <div class="mat-elevation-z8" style="margin-top: 30px;"  >
+        <div class="col">
+          <div class="row m-3">
+              
+              <div class="col-md-4 p-0 text-right">
+              </div>
+          </div>
+          <div class="container shadow min-vh-100 py-4">
+            <div class="row">
+                <div class="col-md-5 mx-auto">
+                    <div class="small fw-light">search </div>
+                    <div class="input-group">
+
+                        <span class="input-group-append">
+                          <input matInput (keyup)="applyFilter($event)" placeholder="Filter" class="form-control border-end-0 border rounded-pill" type="search" value="search" id="example-search-input">
+
+                            
+                            
+                            <select class="form-control"  class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" >
+                              <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+        
+                              <option value="department">department </option>
+                              <option value="Name">username</option>
+
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+          <div>
+            <div class="table-responsive" #table>
+
+              <div *ngFor="let item of dataSource.data">
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <html>Username:<br></html>
+                      <b>{{item.name}}</b>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                    <mat-panel-description>
+                      <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Update</button>
+                    </mat-panel-description>
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </mat-expansion-panel-header>
+                  <p>department: {{item.department}}</p>
+                </mat-expansion-panel>
+              </div>
+              
+            <mat-paginator [pageSizeOptions]="[1, 10, 20]" showFirstLastButtons [pageSize]="10" [length]="dataSource?.data?.length"></mat-paginator>
+    
+          </div>
+          
+        
+         
+          </div>
+        </div>
+        </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Command</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- form update start here -->
+        <form #f="ngForm" >
+
+          <!-- designation validation start here -->
+              <div class="form-group">
+          
+                <label for="exampleFormControlInput1">designation</label>
+                <input type="text" class="form-control" placeholder="designation"  required name="designation" #designation="ngModel" ngModel minlength="2" maxlength="20">
+              </div>
+              <div class="alert alert-danger" *ngIf="designation.errors?.['required']  && designation.touched">
+                designation is required
+              </div>
+              <div class="alert alert-danger" *ngIf="designation.errors?.['minlength'] && designation.touched">
+                designation must be minimum 2 caractere
+              </div>
+          <!-- justification validation end here -->
+          
+          <!-- justification validation start here -->
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">justification</label>
+                  <input type="text" class="form-control" placeholder="justification"  required name="justification" #justification="ngModel" minlength="2" maxlength="20" ngModel>
+                </div>
+                <div class="alert alert-danger" *ngIf="justification.errors?.['required']  && justification.touched">
+                  justification is required
+                </div>
+                <div class="alert alert-danger" *ngIf="justification.errors?.['minlength'] && justification.touched">
+                  justification must be minimum 2 caractere
+                </div>
+          <!-- justification validation end here -->
+          
+          <!-- MR validation start here -->
+          
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">MR</label>
+                  <input type="number" class="form-control" placeholder="MR"  required name="MR" #MR="ngModel" ngModel>
+                </div>
+                <div class="alert alert-danger" *ngIf="MR.errors?.['required']  && MR.touched">
+                  MR is required
+                </div>
+          
+                <div class="alert alert-danger" *ngIf="MR.errors?.['MR'] && MR.touched">
+                  the input must be MR not string
+                </div>
+          <!-- MR validation end here -->
+          
+          <!-- quantity validation start here -->
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">quantity</label>
+                  <input type="number" class="form-control" placeholder="quantity" required name="quantity" #quantity="ngModel" ngModel>
+                </div>
+                <div class="alert alert-danger" *ngIf="quantity.errors?.['required'] && quantity.touched">
+                  quantity is required
+                </div>
+           <!-- quantity validation end here -->     
+          
+          
+           <!-- department validation start here -->
+          
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">department</label>
+                  <input type="string" class="form-control" placeholder="department"  required name="department" #department="ngModel" ngModel>
+                </div>
+                <div class="alert alert-danger" *ngIf="department.errors?.['required']  && department.touched">
+                  department is required
+                </div>
+          <!-- department validation end here -->
+           
+                  
+
+          <div class="alert alert-success" *ngIf="messageSuccess">
+            {{messageSuccess}}
+        </div>      
+
+       <button class="btn btn-primary" [disabled]="f.invalid">Update student</button>
+      </form>
+
+
+
+        <!-- form update end here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
+        
+        
+        
+        
+             
