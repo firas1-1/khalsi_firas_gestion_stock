@@ -18,7 +18,10 @@ const routes: Routes = [
 
   {path:'',loadChildren:()=>import('./views/front/home/home.module').then(m=>m.HomeModule)},
 
-
+////////////
+// DDHHfa-flip-horizontalGHHG
+// GCCNCNfa-flip-verticalJVVJfa-flip-vertical
+// JVVVHJ
   {path:'register',loadChildren:()=>import('./views/front/register/register.module').then(m=>m.RegisterModule),canActivateChild:[NoguarduserGuard]},
   {path:'stockinitial',loadChildren:()=>import('./views/front/student/student.module').then(m=>m.StudentModule),canActivateChild:[GuarduserGuard]},
   {path:'stockdetails',loadChildren:()=>import('./views/front/studentdetails/studentdetails.module').then(m=>m.StudentdetailsModule),canActivateChild:[GuarduserGuard]},
